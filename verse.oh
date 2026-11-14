@@ -1,0 +1,46 @@
+;;; I thank God for allowing me to program
+
+
+(def bible nil)
+
+(def p (p "Loading the Bible..."))
+
+(to body
+  p
+  (button .random @click ((text p (bible.random))))
+  (button .previous @click ((text p (bible.previous))))
+  (button .next @click ((text p (bible.next)))))
+
+(style
+ (font-face fan fan.ttf)
+ (body
+  display flex
+  align-items center
+  width 100%
+  height 100dvh)
+ (button
+  opacity 0 
+  position fixed)
+ ((.next .previous)
+  top 0
+  width 30%
+  height 100%)
+ (.next
+  left 0)
+ (.previous
+  right 0)
+ (.random
+  width 100%
+  height 30%
+  bottom 0)
+  
+ (p
+  padding 3%
+  font-size 1.7em
+  font-family fan
+  color darkorange))
+
+(wait
+ (fetch-json "bible.json")
+ (set bible (iterator result))
+ (text p (bible.random)))
